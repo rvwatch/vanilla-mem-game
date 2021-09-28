@@ -1,7 +1,9 @@
 const startGame = () => {
   const board = document.getElementsByTagName('section')[0];
 
-  const populateBoard = () => {
+  const manageBoard = () => {
+    let flippable = true;
+
     let cardList = [];
     for (let i = 0; i < 16; i++) {
       //TODO: Need to filter for more than 2 duplicates
@@ -29,12 +31,11 @@ const startGame = () => {
       const rando = randomNum(0, cardList.length - 1);
       let randomCard = cardList.splice(rando, 1)[0];
       board.appendChild(randomCard);
-      console.log(randomCard.innerText);
+      // console.log(randomCard.innerText); uncomment to view list of numbers
     }
 
-    let flippable = true;
 
-    const manageCards = event => {
+    const handleCardSelect = event => {
       if (flippable) {
         event.target.parentElement.classList.add('is-flipped');
       }
@@ -55,8 +56,8 @@ const startGame = () => {
         secondCard.classList.add('matched');
         firstCard.classList.remove('is-flipped');
         secondCard.classList.remove('is-flipped');
-        firstCard.removeEventListener('click', manageCards);
-        secondCard.removeEventListener('click', manageCards);
+        firstCard.removeEventListener('click', handleCardSelect);
+        secondCard.removeEventListener('click', handleCardSelect);
         flippable = true;
         checkForWin()
       } else {
@@ -80,14 +81,14 @@ const startGame = () => {
     }
 
     let cards = document.querySelectorAll('.card');
-    cards.forEach(card => card.addEventListener('click', manageCards));
+    cards.forEach(card => card.addEventListener('click', handleCardSelect));
   }
 
   const randomNum = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min)
   }
 
-  populateBoard();
+  manageBoard();
 }
 
 window.addEventListener('load', startGame)
