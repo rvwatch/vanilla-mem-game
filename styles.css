@@ -7,23 +7,28 @@ section{
   height: 100%;
   display: flex;
   flex-wrap: wrap;
-   justify-content: space-between;
-   margin: auto;
-   perspective: 600px;
+  justify-content: space-between;
+  margin: auto;
+  perspective: 1500px;
 }
 
 .card {
-  flex: 0 1 24%;
+  flex: 0 1 12%;
   height: 200px;
   margin-bottom: 10px;
   position: relative;
-  transition: transform 1s;
+  transition: transform .2s;
   transform-style: preserve-3d;
   background-color: blue;
 }
 
-.card.is-flipped {
+.is-flipped,
+.matched {
   transform: rotateY(180deg);
+}
+
+.matched > .back{
+  background-color: green;
 }
 
 .front, 
@@ -33,6 +38,9 @@ section{
   width: 100%;
   backface-visibility: hidden;
   border: none;
+  left: 0; 
+  font-size: 50px;
+  color: white;
 }
 
 .front {
