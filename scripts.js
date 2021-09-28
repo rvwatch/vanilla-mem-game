@@ -16,24 +16,43 @@ const startGame = () => {
 
 
   const populateBoard = () => {
-    let cardTest = [];
+    let cardList = [];
     for (let i = 0; i < 16; i++) {
-      let rando = randomIntFromInterval(1, 100);
+      let rando = randomNum(1, 100);
       for (let j = 0; j < 2; j++) {
-        let card = document.createElement('button');
+        let card = document.createElement('article');
+        let cardFront = document.createElement('button');
+        let cardBack = document.createElement('button');
         card.setAttribute('class', `card`);
-        card.innerText = rando;
-        cardTest.push(card);
+        cardFront.setAttribute('class', `front`);
+        cardBack.setAttribute('class', `back`);
+        cardBack.innerText = rando;
+
+        card.appendChild(cardFront);
+        card.appendChild(cardBack);
+        
+        cardList.push(card);
       }
     }
-
+    
     for (let i = 0; i < 32; i++) {
-      let randomCard = cardTest.splice(Math.floor(Math.random() * cardTest.length), 1);
+      
+      const rando = randomNum(0, cardList.length - 1);
+      let randomCard = cardList.splice(rando, 1);
       board.appendChild(randomCard[0]);
     }
+
+    let cards = document.querySelectorAll('.card');
+    
+    const manageCards = event => {
+      console.log(event.target.classList)
+    }
+
+    cards.forEach(card => card.addEventListener('click', manageCards));
+
   }
 
-  const randomIntFromInterval = (min, max) => { // min and max included 
+  const randomNum = (min, max) => { 
     return Math.floor(Math.random() * (max - min + 1) + min)
   }
 

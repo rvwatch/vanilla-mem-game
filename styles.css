@@ -1,3 +1,7 @@
+main {
+  text-align: center;
+}
+
 section{
   width: 75%;
   height: 100%;
@@ -5,8 +9,38 @@ section{
   flex-wrap: wrap;
    justify-content: space-between;
    margin: auto;
+   perspective: 600px;
 }
 
 .card {
   flex: 0 1 24%;
+  height: 200px;
+  margin-bottom: 10px;
+  position: relative;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  background-color: blue;
 }
+
+.card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.front, 
+.back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+  border: none;
+}
+
+.front {
+    background: red;
+}
+
+.back {
+  background: blue;
+  transform: rotateY( 180deg );
+}
+
