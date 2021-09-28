@@ -1,0 +1,12 @@
+section{
+  width: 75%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+   justify-content: space-between;
+   margin: auto;
+}
+
+.card {
+  flex: 0 1 24%;
+}
