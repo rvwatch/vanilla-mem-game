@@ -1,7 +1,5 @@
 const startGame = () => {
   const board = document.getElementsByTagName('section')[0];
-
-  const manageBoard = () => {
     let flippable = true;
 
     let cardList = [];
@@ -75,7 +73,7 @@ const startGame = () => {
       if (allMatched.length === 32) {
         setTimeout(() => {
           alert('YOU WIN!!');
-        }, 1000)
+        }, 500)
 
       }
     }
@@ -88,7 +86,5 @@ const startGame = () => {
     return Math.floor(Math.random() * (max - min + 1) + min)
   }
 
-  manageBoard();
-}
 
 window.addEventListener('load', startGame)
